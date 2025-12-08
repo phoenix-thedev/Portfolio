@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html>
+
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PhoenixTheDev's Portfolio</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+
+body {
+    background-color: #0f0f0f;
+    color: white;
+    overflow-x: hidden;
+}
+
+#snow-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #0f0f0f; }
+::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #00ff41; }
+
+.glass-panel {
+    background: rgba(26, 26, 26, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.stat-box:hover {
+    box-shadow: 0 0 20px rgba(0, 255, 65, 0.15);
+}
+
+  </style>
+
+  
+</head>
+<body>
+  <script src="https://cdn.tailwindcss.com"></script>
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+
+
+<canvas id="snow-canvas"></canvas>
+
+<main class="relative z-10 container mx-auto px-4 py-12 max-w-6xl">
+    <section id="about" class="mb-24">
+        <div class="flex flex-col md:flex-row items-center gap-10 mb-12">
+            <div class="relative group">
+                <div class="absolute inset-0 bg-gradient-to-tr from-themeGreen to-themeRed rounded-full blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
+                <img src="https://cdn.discordapp.com/attachments/1432734860874874982/1447179182768521277/AqzZ4aY.png?ex=6936ae24&is=69355ca4&hm=41eda096fa9d6e7cea427b63675afe45eaa44d02ecf55d9cf78e9a4b9f5cb32e&" alt="Profile" class="relative w-40 h-40 rounded-full border-4 border-cardBg object-cover shadow-2xl z-10">
+            </div>
+            
+            <div class="text-center md:text-left max-w-2xl">
+                <h2 class="text-4xl font-bold mb-4">I'm <span class="text-themeGreen">PhoenixTheDev.</span></h2>
+                <p class="text-gray-400 leading-relaxed">
+                    I've been a Roblox Programmer for almost 5 years, helping developers have their game come to life with clean, effiecent & modular code.
+                </p>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="stat-box glass-panel p-6 rounded-xl text-center cursor-pointer transition-transform transform">
+                <i class="fa-solid fa-gamepad text-3xl text-themeGreen mb-3 icon-hover"></i>
+                <h3 class="text-2xl font-bold" id="stat-games">0</h3>
+                <p class="text-xs text-gray-500 uppercase tracking-widest">Total Games</p>
+            </div>
+            <div class="stat-box glass-panel p-6 rounded-xl text-center cursor-pointer transition-transform transform">
+                <i class="fa-solid fa-users text-3xl text-themeRed mb-3 icon-hover"></i>
+                <h3 class="text-2xl font-bold" id="stat-ccu">0</h3>
+                <p class="text-xs text-gray-500 uppercase tracking-widest">Peak CCU</p>
+            </div>
+            <div class="stat-box glass-panel p-6 rounded-xl text-center cursor-pointer transition-transform transform">
+                <i class="fa-solid fa-eye text-3xl text-themeGreen mb-3 icon-hover"></i>
+                <h3 class="text-2xl font-bold" id="stat-visits">0</h3>
+                <p class="text-xs text-gray-500 uppercase tracking-widest">Total Visits</p>
+            </div>
+            <div class="stat-box glass-panel p-6 rounded-xl text-center cursor-pointer transition-transform transform">
+                <i class="fa-solid fa-user-group text-3xl text-themeRed mb-3 icon-hover"></i>
+                <h3 class="text-2xl font-bold" id="stat-members">0</h3>
+                <p class="text-xs text-gray-500 uppercase tracking-widest">Group Members</p>
+            </div>
+        </div>
+    </section>
+
+    <hr class="border-gray-800 mb-24">
+
+    <section id="games" class="mb-24">
+        <div class="flex flex-col md:flex-row justify-start items-start mb-8 gap-4">
+            <div>
+                <h2 class="text-3xl font-bold mb-2">All Games</h2>
+                <p class="text-gray-500 text-sm">Displaying <span id="game-count" class="text-white">0</span> experiences. 
+                These are Peak CCU. The games you've seen here, I've made the majority of the game in all of them apart from Endzone Strike. </p>
+
+                <br>
+
+                <p class="text-gray-500 text-sm">In Endzone strike, I made significant performance upgrades, reducing ping by over 50%, cutting sent & received by over 60%, and allowing funnels for the developers to track where their playerbase has lost interest. </p>
+            </div>
+            
+            <div class="flex gap-3 w-full md:w-auto">
+                <input type="text" id="search-bar" placeholder="Search games..." class="bg-cardBg border border-gray-800 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-themeGreen w-full md:w-64">
+                <select id="sort-select" class="bg-cardBg border border-gray-800 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-themeGreen cursor-pointer">
+                    <option value="visits">Most Visits</option>
+                    <option value="ccu">Highest CCU</option>
+                </select>
+            </div>
+        </div>
+
+        <div id="games-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        </div>
+    </section>
+
+    <section id="otherwork" class="mb-24">
+        <div class="flex flex-col md:flex-row justify-start items-start mb-8 gap-4">
+            <div>
+                <h2 class="text-3xl font-bold mb-2">Other Work</h2>
+                <p class="text-gray-500 text-sm">Demostrations that haven't been published games with CCU. This allows you to see more of my work. </p>
+            </div>
+        </div>
+
+<div class="game-card bg-[#1a1a1a] rounded-xl overflow-hidden hover:scale-[1.02] transition-all duration-300 border border-gray-800 hover:border-themeGreen group">
+
+    <div class="relative w-full aspect-video overflow-hidden bg-[#1a1a1a]">
+        <img src="https://cdn.discordapp.com/attachments/1432734860874874982/1447315641953423360/BNTTQeG.png?ex=69387eba&is=69372d3a&hm=17d857d7a52c8547cfff6461938504d79e2392c214a677235d3e6ac594795539&"
+             class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+        <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition"></div>
+    </div>
+
+    <div class="p-4">
+
+        <h2 class="font-bold text-2xl truncate text-white group-hover:text-themeWhite transition">
+            Pseudo-random terrain generation
+        </h2>
+        <br> 
+
+                <p class="text-themeGreen text-sm">
+           Code is available for this one! This allows you to see how I structure my code & there are comments to show I haven't used AI. You aren't allowed to use this on your own projects :(
+        </p> <br>
+
+        <p class="text-gray-400 leading-relaxed">
+            One of my more favourite creations since it was pretty experimental. This showcases my more mathematical knowledge & backend work.
+        </p> <br>
+
+        <p class="text-gray-400 leading-relaxed">
+            I made terrain that would randomly generate using perlin noise based on a seed, spawning in decoration like trees, and only creating terrain around the players to allow maximum performance =)
+        </p> <br>
+
+        <p class="text-gray-400 leading-relaxed">
+           It also has biome blend, so it's not obvious that it's just cuts off or is rectangular shape.
+        </p> <br>
+
+        <div class="flex items-center gap-1">
+            <span class="text-white font-semibold">Video Link:</span>
+            <a href="https://vimeo.com/1097166804/52f3650157?share=copy"
+               target="_blank"
+               class="text-blue-400 hover:text-blue-300 transition-colors">
+               https://vimeo.com/1097166804/52f3650157?share=copy
+            </a>
+        </div>
+
+        <div class="flex items-center gap-1">
+            <span class="text-white font-semibold">Game Link:</span>
+            <a href="https://www.roblox.com/games/110076302469151/Untitled-Game"
+               target="_blank"
+               class="text-blue-400 hover:text-blue-300 transition-colors">
+               https://www.roblox.com/games/110076302469151/Untitled-Game
+            </a>
+        </div>
+
+         <div class="flex items-center gap-1">
+            <span class="text-themeGreen font-semibold">Code Link:</span>
+            <a href="https://pastebin.com/sB71FaSX"
+               target="_blank"
+               class="text-blue-400 hover:text-blue-300 transition-colors">
+              https://pastebin.com/sB71FaSX
+            </a>
+        </div>
+    </div>
+</div>
+
+<br>
+
+<div class="game-card bg-[#1a1a1a] rounded-xl overflow-hidden hover:scale-[1.02] transition-all duration-300 border border-gray-800 hover:border-themeGreen group">
+
+    <div class="relative w-full aspect-video overflow-hidden bg-[#1a1a1a]">
+        <img src="https://cdn.discordapp.com/attachments/1432734860874874982/1447693529567465533/GAPav0s.png?ex=69388d2a&is=69373baa&hm=698706235b8ce4f18ad63b857b0786156fb69a25fd7b68e1a40e63712faf709c&"
+             class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+        <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition"></div>
+    </div>
+
+    <div class="p-4">
+
+        <h2 class="font-bold text-2xl truncate text-white group-hover:text-themeWhite transition">
+            Tycoon Framework
+        </h2>
+
+        <p class="text-gray-400 leading-relaxed">
+            Made a purchasable tycoon framework for 150USD, with full documentation. Again, all systems were made by me, with the exception of the models (the droppers etc.) were public.
+        </p> <br>
+
+        <p class="text-gray-400 leading-relaxed">
+            The game showcases how I can made clean, modular & optimised code and handling advanced datastores & many more skills! Go give it a try or a watch ;)
+        </p> <br>
+
+        <div class="flex items-center gap-1">
+            <span class="text-white font-semibold">Video Link:</span>
+            <a href="https://vimeo.com/1097166644/9b3a933461?share=copy$0"
+               target="_blank"
+               class="text-blue-400 hover:text-blue-300 transition-colors">
+              https://vimeo.com/1097166644/9b3a933461?share=copy$0
+            </a>
+        </div>
+
+        <div class="flex items-center gap-1">
+            <span class="text-white font-semibold">Game Link:</span>
+            <a href="https://www.roblox.com/games/92749317870863/Tycoon-Framework$0"
+               target="_blank"
+               class="text-blue-400 hover:text-blue-300 transition-colors">
+               https://www.roblox.com/games/92749317870863/Tycoon-Framework$0
+            </a>
+        </div>
+    </div>
+</div>
+    </section>
+
+  <section id="contact" class="mb-24 grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-8">
+        <div class="glass-panel p-6 rounded-xl">
+            <h2 class="text-2xl font-bold mb-6">Contact Me</h2>
+            <div class="space-y-4">
+                <a href="#" class="flex items-center p-4 bg-gray-800/50 rounded-lg hover:bg-gray-800 transition group">
+                    <i class="fa-brands fa-discord text-2xl text-[#5865F2] mr-4 group-hover:rotate-12 transition"></i>
+                    <div>
+                        <p class="text-xs text-gray-400">Discord</p>
+                        <p class="font-bold">@phoenixthedev_</p>
+                    </div>
+                </a>
+                <a href="#" class="flex items-center p-4 bg-gray-800/50 rounded-lg hover:bg-gray-800 transition group">
+                    <i class="fa-brands fa-twitter text-2xl text-white mr-4 group-hover:rotate-12 transition"></i>
+                    <div>
+                        <p class="text-xs text-gray-400">Twitter / X</p>
+                        <p class="font-bold">@phoenixthedev_</p>
+                    </div>
+                </a>
+                <a href="#" class="flex items-center p-4 bg-gray-800/50 rounded-lg hover:bg-gray-800 transition group">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Roblox_Logo_2022.jpg?20220830054427$0" class="w-6 h-6 mr-4 rounded grayscale group-hover:grayscale-0 transition" alt="">
+                    <div>
+                        <p class="text-xs text-gray-400">Roblox</p>
+                        <p class="font-bold">@Diangamertv</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+            <div class="glass-panel p-8 rounded-xl h-full overflow-y-auto">
+             <h2 class="text-xl font-semibold mt-4 mb-2">Why hire me? What do you code?</h3>
+
+              <p class="text-gray-400 leading-relaxed">
+                    I have quick responses times, code that every scripter can easily work with, making it more easier for multiple people to work on the same project, and free bug fixes for life.
+                    
+                </p>
+                <ul class="list-disc list-inside text-gray-400 text-sm">
+
+                   <h2 class="text-xl font-semibold mt-4 mb-2">What coding languages do you code in?</h3>
+                    <p class="text-gray-400 leading-relaxed"> I am extremely fluent in Lua (Roblox), though I can code in: </p>
+
+                      <br>
+
+                  <li> HTML & CSS - Coding languages for websites </li>
+                  <li> JavaScript - Again, coding languages for websites  </li>
+                  <li> Python - Versitile coding language for discord bots + more </li>
+                </ul>
+                <br>
+                <p class="text-gray-400 leading-relaxed"> To demostrate my HTML, CSS & Javascript talents, this website was coded by me (AI assisted, it made a basic framework.)</p>
+            </div>
+    </section>
+
+<section id="tos" class="mb-24 grid grid-cols-1 md:grid-cols-1 gap-x-4 gap-y-0">
+  <div class="glass-panel p-8 rounded-xl w-full overflow-y-auto">
+    <h2 class="text-2xl font-bold mb-4">Terms & Conditions</h2>
+
+    <h3 class="text-xl font-semibold mt-4 mb-2">Payment Terms</h3>
+    <ul class="list-disc list-inside text-gray-400 text-sm">
+        <li><strong>PayPal payments:</strong> Use Friends & Family option to minimize fees unless agreed otherwise.</li>
+        <li><strong>Deposit:</strong> 50% upfront is required. If I cannot complete the project, this deposit will be fully refunded including any fees.</li>
+        <li><strong>Remaining Payment:</strong> Due upon project completion and your satisfaction. Finished files are delivered after full payment.</li>
+    </ul>
+
+    <h3 class="text-xl font-semibold mt-4 mb-2">Project Scope & Updates</h3>
+    <ul class="list-disc list-inside text-gray-400 text-sm">
+        <li>Progress updates are provided after major milestones. Example for an egg & pet system:
+            <ul class="list-disc list-inside ml-4">
+                <li>Egg Hatching – 33%</li>
+                <li>Pet System – 33%</li>
+                <li>Animation – 33%</li>
+            </ul>
+        </li>
+        <li>You may request progress updates or video proof at any time.</li>
+        <li>Responses are typically within <strong>10 minutes to 1 hour</strong>, allow up to 24 hours if unavailable.</li>
+    </ul>
+
+    <h3 class="text-xl font-semibold mt-4 mb-2">Cancellation & Refund Policy</h3>
+    <ul class="list-disc list-inside text-gray-400 text-sm">
+        <li>Client cancellations: Deposit is non-refundable, but unfinished project files are provided.</li>
+        <li>If over <strong>80%</strong> of the project is complete, full payment is required for files.</li>
+        <li>Developer cancellations: Current version is provided free, plus a full refund if applicable.</li>
+    </ul>
+
+    <h3 class="text-xl font-semibold mt-4 mb-2">Project Modifications & Scope Changes</h3>
+    <ul class="list-disc list-inside text-gray-400 text-sm">
+        <li>All changes/additions must be discussed. Extra work may result in adjusted price.</li>
+        <li>Frequent or significant out-of-scope requests may incur fees or project cancellation.</li>
+    </ul>
+
+    <h3 class="text-xl font-semibold mt-4 mb-2">Bug Fixing Policy</h3>
+    <ul class="list-disc list-inside text-gray-400 text-sm">
+        <li>Bug fixes are provided free of charge.</li>
+        <li>Provide sufficient details/proof; insufficient info may delay fixes or result in cancellation.</li>
+        <li>Not liable for delays caused by illness, hardware issues, or unavoidable circumstances.</li>
+    </ul>
+
+    <h3 class="text-xl font-semibold mt-4 mb-2">Client Conduct & Discretion</h3>
+    <ul class="list-disc list-inside text-gray-400 text-sm">
+        <li>Rudeness, harassment, or discrimination may lead to immediate cancellation.</li>
+        <li>Refunds for cancelled commissions due to client misconduct may be denied.</li>
+        <li>Scam attempts void these terms; services may be withheld at developer discretion.</li>
+    </ul>
+
+    <h3 class="text-xl font-semibold mt-4 mb-2">Final Disclaimer</h3>
+    <ul class="list-disc list-inside text-gray-400 text-sm">
+        <li>By commissioning, you agree to these terms in full.</li>
+        <li>Rare cancellations (hardware failure, illness, family emergency):
+            <ul class="list-disc list-inside ml-4">
+                <li>Option 1: Receive current version + full refund.</li>
+                <li>Option 2: Wait a few days for completion + 20% discount.</li>
+            </ul>
+        </li>
+        <li>Developer not liable for delays from unavoidable circumstances.</li>
+    </ul>
+
+    <p class="mt-4 text-themeRed text-xs"><strong>* By contacting, you agree to these terms in full.</strong></p>
+</div>
+
+
+    </section>
+
+    <footer class="text-center text-gray-600 text-sm pb-8">
+        <p>&copy; 2025. Made by Phoenix, AI Assisted (framework).</p>
+    </footer>
+
+<audio id="bg-music" 
+       src="https://cdn.discordapp.com/attachments/1432734860874874982/1447251832995975219/EW0KEbR.mp3?ex=6938434d&is=6936f1cd&hm=a63419b0160ae565c8e46715f8ed877142d3ca3985ee95876fc10fb027c4901b&" 
+       loop></audio> 
+<script>
+  const music = document.getElementById('bg-music');
+  music.volume = 0.15;
+  
+  // Attempt to play the music after a very short delay
+  setTimeout(() => {
+    music.play()
+      .then(() => {
+        console.log("Audio started successfully.");
+      })
+      .catch((error) => {
+        // This is the common outcome in modern browsers
+        console.warn("Autoplay was blocked. User interaction is required.", error);
+      });
+  }, 100); // 100ms delay
+</script>
+
+</main>
+
+  <script>
+    tailwind.config = {
+    theme: {
+        extend: {
+            colors: {
+                themeGreen: '#00ff41',
+                themeRed: '#ff3333',
+                darkBg: '#0f0f0f',
+                cardBg: '#1a1a1a'
+            },
+            fontFamily: {
+                sans: ['Inter', 'sans-serif'],
+            }
+        }
+    }
+}
+
+const canvas = document.getElementById('snow-canvas');
+const ctx = canvas.getContext('2d');
+
+let width, height;
+let particles = [];
+
+function resize() {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+}
+
+class Snowflake {
+    constructor() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+        this.vx = (Math.random() - 0.5) * 1;
+        this.vy = Math.random() * 2 + 1;
+        this.size = Math.random() * 2 + 1;
+        this.opacity = Math.random() * 0.5 + 0.3;
+    }
+
+    update() {
+        this.x += this.vx;
+        this.y += this.vy;
+
+        if (this.y > height) {
+            this.y = -10;
+            this.x = Math.random() * width;
+        }
+    }
+
+    draw() {
+        ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+    }
+}
+
+function initSnow() {
+    resize();
+    for (let i = 0; i < 75; i++) {
+        particles.push(new Snowflake());
+    }
+    animateSnow();
+}
+
+function animateSnow() {
+    ctx.clearRect(0, 0, width, height);
+    particles.forEach(p => {
+        p.update();
+        p.draw();
+    });
+    requestAnimationFrame(animateSnow);
+}
+
+window.addEventListener('resize', resize);
+initSnow();
+
+const MOCK_GAMES_DATA = [
+    { title: "Catch A Zoo", thumbnail: "https://tr.rbxcdn.com/180DAY-9e403cf16a40609adad184ba27b29369/768/432/Image/Webp/noFilter$0", playing: 5041, visits: 7004712, url: "https://www.roblox.com/games/133973973326309/Catch-A-Zoo" },
+    { title: "Endzone Strike", thumbnail: "https://tr.rbxcdn.com/180DAY-396c2a5ddd0b48656d543f4e9a8e8f5f/768/432/Image/Webp/noFilter$0", playing: 262, visits: 35912, url: "https://www.roblox.com/games/104724796200625/Endzone-Strike$0" },
+    { title: "Nuke A City", thumbnail: "https://tr.rbxcdn.com/180DAY-853f67b82b9ae249493dbaa3d057ec60/768/432/Image/Webp/noFilter$0", playing: 98, visits: 33402, url: "https://www.roblox.com/games/117143317369237/Nuke-a-City$0" },
+    { title: "Slap Tower of Trolling", thumbnail: "https://tr.rbxcdn.com/180DAY-882dd111893879199ea2b9555e45acd1/768/432/Image/Webp/noFilter$0", playing: 54, visits: 36981, url: "https://www.roblox.com/games/85009444133440/Slap-Tower-of-Trolling" },
+];
+
+function formatNumber(num) {
+    if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M';
+    if (num >= 1000) return (num / 1000).toFixed(1) + 'K';
+    return num;
+}
+
+function animateCounter(id, endValue, suffix = "") {
+    let obj = { val: 0 };
+    gsap.to(obj, {
+        val: endValue,
+        duration: 2,
+        ease: "power2.out",
+        onUpdate: () => {
+            let formatted = Math.floor(obj.val).toLocaleString();
+            document.getElementById(id).innerText = formatted + suffix;
+        }
+    });
+}
+
+function calculateTotalStats(data) {
+    const totalGames = data.length;
+    const totalCCU = data.reduce((acc, game) => acc + game.playing, 0);
+    const totalVisits = data.reduce((acc, game) => acc + game.visits, 0);
+    const totalMembers = 102913;
+
+    animateCounter("stat-games", totalGames);
+    animateCounter("stat-ccu", totalCCU);
+    animateCounter("stat-visits", totalVisits);
+    animateCounter("stat-members", totalMembers);
+}
+
+function renderGames(data) {
+    const grid = document.getElementById('games-grid');
+    const countLabel = document.getElementById('game-count');
+    
+    grid.innerHTML = '';
+    countLabel.innerText = data.length;
+
+    data.forEach((game, index) => {
+        const card = document.createElement('a');
+        card.href = game.url;
+        card.target = "_blank";
+        card.className = "game-card block bg-[#1a1a1a] rounded-xl overflow-hidden hover:scale-[1.02] transition-all duration-300 border border-gray-800 hover:border-themeGreen group";
+        card.style.opacity = '0'; 
+        
+        card.innerHTML = `
+    <div class="relative w-full aspect-video overflow-hidden rounded-xl bg-gray-800">
+        <img src="${game.thumbnail}" alt="${game.title}" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+        <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition"></div>
+    </div>
+
+            </div>
+            <div class="p-4">
+                <h3 class="font-bold text-lg mb-4 truncate text-white group-hover:text-themeGreen transition">${game.title}</h3>
+                <div class="flex gap-2">
+                    <div class="flex-1 bg-gray-800/80 rounded p-2 flex items-center justify-between">
+                        <span class="text-xs text-blue-400 font-bold">PLAYING</span>
+                        <span class="text-sm font-semibold">${formatNumber(game.playing)}</span>
+                    </div>
+                    <div class="flex-1 bg-gray-800/80 rounded p-2 flex items-center justify-between">
+                        <i class="fa-regular fa-eye text-themeGreen text-xs"></i>
+                        <span class="text-sm font-semibold">${formatNumber(game.visits)}</span>
+                    </div>
+                </div>
+            </div>
+        `;
+        grid.appendChild(card);
+
+        gsap.to(card, {
+            opacity: 1,
+            y: 0,
+            duration: 0.5,
+            delay: index * 0.1,
+            ease: "power2.out"
+        });
+    });
+}
+
+const searchInput = document.getElementById('search-bar');
+const sortSelect = document.getElementById('sort-select');
+
+function filterAndRender() {
+    let filtered = [...MOCK_GAMES_DATA];
+    const query = searchInput.value.toLowerCase();
+    if(query) filtered = filtered.filter(g => g.title.toLowerCase().includes(query));
+    const sortType = sortSelect.value;
+    if(sortType === 'ccu') filtered.sort((a, b) => b.playing - a.playing);
+    else filtered.sort((a, b) => b.visits - a.visits);
+    renderGames(filtered);
+}
+
+searchInput.addEventListener('input', filterAndRender);
+sortSelect.addEventListener('change', filterAndRender);
+
+window.onload = () => {
+    calculateTotalStats(MOCK_GAMES_DATA);
+    filterAndRender();
+
+    const statBoxes = document.querySelectorAll('.stat-box');
+    statBoxes.forEach(box => {
+        box.addEventListener('mouseenter', () => {
+            gsap.to(box, { scale: 1.05, duration: 0.3 });
+            gsap.to(box.querySelector('i'), { rotation: 360, duration: 0.5 });
+        });
+        box.addEventListener('mouseleave', () => {
+            gsap.to(box, { scale: 1, duration: 0.3 });
+            gsap.to(box.querySelector('i'), { rotation: 0, duration: 0.5 });
+        });
+    });
+};
+
+  </script>
+</body>
+</html>
