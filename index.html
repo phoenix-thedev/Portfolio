@@ -1,68 +1,59 @@
 <!DOCTYPE html>
 <html>
-
-<html>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>PhoenixTheDev's Portfolio</title>
 
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');<!DOCTYPE html>
-<html>
-
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>PhoenixTheDev's Portfolio</title>
-
-  <style>
+    /* * The duplicate HTML structure has been removed. 
+     * All CSS is now inside this single <style> block.
+     */
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
 
-body {
-    background-color: #0f0f0f;
-    color: white;
-    overflow-x: hidden;
-}
+    body {
+        background-color: #0f0f0f;
+        color: white;
+        overflow-x: hidden;
+    }
 
-#snow-canvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 0;
-}
+    #snow-canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 0;
+    }
 
-::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: #0f0f0f; }
-::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: #00ff41; }
+    /* Scrollbar Styling */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #0f0f0f; }
+    ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #00ff41; }
 
-.glass-panel {
-    background: rgba(26, 26, 26, 0.8);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-}
+    /* Glass Effect Styling */
+    .glass-panel {
+        background: rgba(26, 26, 26, 0.8);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+    }
 
-.stat-box:hover {
-    box-shadow: 0 0 20px rgba(0, 255, 65, 0.15);
-}
-
+    /* Hover Effect Styling */
+    .stat-box:hover {
+        box-shadow: 0 0 20px rgba(0, 255, 65, 0.15);
+    }
   </style>
 
-  
 </head>
 <body>
   <script src="https://cdn.tailwindcss.com"></script>
-    
+  
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+  
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-
 
 
 <canvas id="snow-canvas"></canvas>
@@ -146,7 +137,7 @@ body {
 
     <div class="relative w-full aspect-video overflow-hidden bg-[#1a1a1a]">
         <img src="TerrainGenerationThumb.png"
-             class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+              class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
         <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition"></div>
     </div>
 
@@ -157,8 +148,8 @@ body {
         </h2>
         <br> 
 
-                <p class="text-themeGreen text-sm">
-           Code is available for this one! This allows you to see how I structure my code & there are comments to show I haven't used AI. You aren't allowed to use this on your own projects :(
+        <p class="text-themeGreen text-sm">
+            Code is available for this one! This allows you to see how I structure my code & there are comments to show I haven't used AI. You aren't allowed to use this on your own projects :(
         </p> <br>
 
         <p class="text-gray-400 leading-relaxed">
@@ -176,27 +167,27 @@ body {
         <div class="flex items-center gap-1">
             <span class="text-white font-semibold">Video Link:</span>
             <a href="https://vimeo.com/1097166804/52f3650157?share=copy"
-               target="_blank"
-               class="text-blue-400 hover:text-blue-300 transition-colors">
-               https://vimeo.com/1097166804/52f3650157?share=copy
+                target="_blank"
+                class="text-blue-400 hover:text-blue-300 transition-colors">
+                https://vimeo.com/1097166804/52f3650157?share=copy
             </a>
         </div>
 
         <div class="flex items-center gap-1">
             <span class="text-white font-semibold">Game Link:</span>
             <a href="https://www.roblox.com/games/110076302469151/Untitled-Game"
-               target="_blank"
-               class="text-blue-400 hover:text-blue-300 transition-colors">
-               https://www.roblox.com/games/110076302469151/Untitled-Game
+                target="_blank"
+                class="text-blue-400 hover:text-blue-300 transition-colors">
+                https://www.roblox.com/games/110076302469151/Untitled-Game
             </a>
         </div>
 
-         <div class="flex items-center gap-1">
+           <div class="flex items-center gap-1">
             <span class="text-themeGreen font-semibold">Code Link:</span>
             <a href="https://pastebin.com/sB71FaSX"
-               target="_blank"
-               class="text-blue-400 hover:text-blue-300 transition-colors">
-              https://pastebin.com/sB71FaSX
+                target="_blank"
+                class="text-blue-400 hover:text-blue-300 transition-colors">
+                 https://pastebin.com/sB71FaSX
             </a>
         </div>
     </div>
@@ -208,7 +199,7 @@ body {
 
     <div class="relative w-full aspect-video overflow-hidden bg-[#1a1a1a]">
         <img src="TycoonFrameworkThumb.png"
-             class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+              class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
         <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition"></div>
     </div>
 
@@ -229,8 +220,8 @@ body {
         <div class="flex items-center gap-1">
             <span class="text-white font-semibold">Video Link:</span>
             <a href="https://vimeo.com/1097166644/9b3a933461?share=copy$0"
-               target="_blank"
-               class="text-blue-400 hover:text-blue-300 transition-colors">
+                target="_blank"
+                class="text-blue-400 hover:text-blue-300 transition-colors">
               https://vimeo.com/1097166644/9b3a933461?share=copy$0
             </a>
         </div>
@@ -238,16 +229,16 @@ body {
         <div class="flex items-center gap-1">
             <span class="text-white font-semibold">Game Link:</span>
             <a href="https://www.roblox.com/games/92749317870863/Tycoon-Framework$0"
-               target="_blank"
-               class="text-blue-400 hover:text-blue-300 transition-colors">
-               https://www.roblox.com/games/92749317870863/Tycoon-Framework$0
+                target="_blank"
+                class="text-blue-400 hover:text-blue-300 transition-colors">
+                https://www.roblox.com/games/92749317870863/Tycoon-Framework$0
             </a>
         </div>
     </div>
 </div>
     </section>
 
-  <section id="contact" class="mb-24 grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-8">
+    <section id="contact" class="mb-24 grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-8">
         <div class="glass-panel p-6 rounded-xl">
             <h2 class="text-2xl font-bold mb-6">Contact Me</h2>
             <div class="space-y-4">
@@ -278,20 +269,20 @@ body {
             <div class="glass-panel p-8 rounded-xl h-full overflow-y-auto">
              <h2 class="text-xl font-semibold mt-4 mb-2">Why hire me? What do you code?</h3>
 
-              <p class="text-gray-400 leading-relaxed">
-                    I have quick responses times, code that every scripter can easily work with, making it more easier for multiple people to work on the same project, and free bug fixes for life.
+             <p class="text-gray-400 leading-relaxed">
+                  I have quick responses times, code that every scripter can easily work with, making it more easier for multiple people to work on the same project, and free bug fixes for life.
                     
                 </p>
                 <ul class="list-disc list-inside text-gray-400 text-sm">
 
-                   <h2 class="text-xl font-semibold mt-4 mb-2">What coding languages do you code in?</h3>
+                    <h2 class="text-xl font-semibold mt-4 mb-2">What coding languages do you code in?</h3>
                     <p class="text-gray-400 leading-relaxed"> I am extremely fluent in Lua (Roblox), though I can code in: </p>
 
                       <br>
 
-                  <li> HTML & CSS - Coding languages for websites </li>
-                  <li> JavaScript - Again, coding languages for websites  </li>
-                  <li> Python - Versitile coding language for discord bots + more </li>
+                    <li> HTML & CSS - Coding languages for websites </li>
+                    <li> JavaScript - Again, coding languages for websites  </li>
+                    <li> Python - Versitile coding language for discord bots + more </li>
                 </ul>
                 <br>
                 <p class="text-gray-400 leading-relaxed"> To demostrate my HTML, CSS & Javascript talents, this website was coded by me (AI assisted, it made a basic framework.)</p>
@@ -372,8 +363,8 @@ body {
     </footer>
 
 <audio id="bg-music" 
-       src="BackgroundMusic.mp3" 
-       loop></audio> 
+        src="BackgroundMusic.mp3" 
+        loop></audio> 
 <script>
   const music = document.getElementById('bg-music');
   music.volume = 0.15;
@@ -459,10 +450,10 @@ window.addEventListener('resize', resize);
 initSnow();
 
 const MOCK_GAMES_DATA = [
-    { title: "Catch A Zoo", thumbnail: "CatchAZooThumb.webp", playing: 5041, visits: 7004712, url: "https://www.roblox.com/games/133973973326309/Catch-A-Zoo" },
-    { title: "Endzone Strike", thumbnail: "EndzoneStrikeThumb.webp", playing: 262, visits: 35912, url: "https://www.roblox.com/games/104724796200625/Endzone-Strike$0" },
-    { title: "Nuke A City", thumbnail: "NukeACityThumb.webp", playing: 98, visits: 33402, url: "https://www.roblox.com/games/117143317369237/Nuke-a-City$0" },
-    { title: "Slap Tower of Trolling", thumbnail: "SlapTowerOfTrollingThumb.webp", playing: 54, visits: 36981, url: "https://www.roblox.com/games/85009444133440/Slap-Tower-of-Trolling" },
+    { title: "Catch A Zoo", thumbnail: "catchazoo.webp", playing: 5041, visits: 7004712, url: "https://www.roblox.com/games/133973973326309/Catch-A-Zoo" },
+    { title: "Endzone Strike", thumbnail: "endzonestrike.webp", playing: 262, visits: 35912, url: "https://www.roblox.com/games/104724796200625/Endzone-Strike$0" },
+    { title: "Nuke A City", thumbnail: "nukeacity.webp", playing: 98, visits: 33402, url: "https://www.roblox.com/games/117143317369237/Nuke-a-City$0" },
+    { title: "Slap Tower of Trolling", thumbnail: "slaptoweroftrolling.webp", playing: 54, visits: 36981, url: "https://www.roblox.com/games/85009444133440/Slap-Tower-of-Trolling" },
 ];
 
 function formatNumber(num) {
@@ -576,10 +567,6 @@ window.onload = () => {
     });
 };
 
-
-  </script>
-</body>
-</html>
 
   </script>
 </body>
