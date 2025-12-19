@@ -483,7 +483,7 @@ function calculateTotalStats(data) {
     const totalGames = data.length;
     const totalCCU = data.reduce((acc, game) => acc + game.playing, 0);
     const totalVisits = data.reduce((acc, game) => acc + game.visits, 0);
-    const totalMembers = 102913;
+    const totalMembers = 141831;
 
     animateCounter("stat-games", totalGames);
     animateCounter("stat-ccu", totalCCU);
@@ -575,6 +575,7 @@ window.onload = () => {
   </script>
 </body>
 </html>
+
 
 
 
